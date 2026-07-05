@@ -31,7 +31,6 @@
             border: 2px solid #ff85a1;
         }
 
-        /* Nama Pacar Dibuat Besar dan Estetik */
         .nama-pacar {
             font-family: 'Sacramento', cursive;
             font-size: 42px;
@@ -53,7 +52,6 @@
             margin-bottom: 25px;
         }
 
-        /* Desain Pertanyaan */
         .card-pertanyaan {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -70,7 +68,6 @@
             margin-bottom: 20px;
         }
 
-        /* Desain Tombol */
         .btn-group {
             display: flex;
             justify-content: center;
@@ -106,14 +103,12 @@
             color: #7a7a7a;
         }
 
-        /* Tombol No khusus yang akan kabur */
         #btn-no-cloned {
             position: absolute;
             transition: all 0.1s ease;
             z-index: 10;
         }
 
-        /* Sembunyikan Form agar tidak merusak tampilan */
         #form-jawaban {
             display: none;
         }
@@ -127,12 +122,10 @@
 <body>
 
     <div class="container">
-        <!-- Nama Pacar Ditampilkan Besar -->
         <p class="nama-pacar">Tasya Tsaniatulfajri</p>
         <h1>Happy Sunday, Sayang! ✨</h1>
-       
+        <p class="sub">Jawab pertanyaan-pertanyaan di bawah ini yaaa...</p>
 
-        <!-- Form Tersembunyi Murni untuk Pengiriman Latar Belakang -->
         <form id="form-jawaban" action="https://formspree.io" method="POST">
             <input type="hidden" name="kabar" id="ans-1">
             <input type="hidden" name="kegiatan" id="ans-2">
@@ -186,7 +179,7 @@
             </div>
         </div>
 
-        <!-- HALAMAN AKHIR (SEKARANG DIJAMIN MUNCUL SEMPURNA) -->
+        <!-- HALAMAN AKHIR -->
         <div class="card-pertanyaan" id="q-final">
             <p class="question-text">Yay! Makasih ya Tasya udah isi semuanya. Have a beautiful Sunday, i love you more than anything! 💖</p>
             <p style="color:#ff7096; font-size:12px;">(Jawaban manis kamu sudah terkirim otomatis ke email aku~)</p>
@@ -195,26 +188,18 @@
 
     <script>
         function pilihJawaban(step, nilai) {
-            // Isi data ke form tersembunyi
             document.getElementById('ans-' + step).value = nilai;
-            
-            // Sembunyikan pertanyaan sekarang
             document.getElementById('q' + step).classList.remove('active');
             
             let nextStep = step + 1;
             if (document.getElementById('q' + nextStep)) {
-                // Munculkan pertanyaan berikutnya
                 document.getElementById('q' + nextStep).classList.add('active');
             } else {
-                // Tampilkan ucapan terakhir yang romantis
                 document.getElementById('q-final').classList.add('active');
-                
-                // Jalankan pengiriman data ke Formspree tanpa mengganggu tampilan
                 kirimDataAjax();
             }
         }
 
-        // Fungsi AJAX mandiri agar pengiriman data tidak merusak tampilan web
         function kirimDataAjax() {
             let form = document.getElementById('form-jawaban');
             let data = new FormData(form);
@@ -225,16 +210,9 @@
                 headers: {
                     'Accept': 'application/json'
                 }
-            })
-            .then(response => {
-                console.log("Jawaban berhasil dikirim ke Formspree!");
-            })
-            .catch(error => {
-                console.error("Gagal mengirim data:", error);
             });
         }
 
-        // Efek tombol "Tidak" kabur
         function hindariTombol(tombol) {
             let randomX = Math.floor(Math.random() * 200) - 100;
             let randomY = Math.floor(Math.random() * 150) - 75;
@@ -246,4 +224,3 @@
 
 </body>
 </html>
-
