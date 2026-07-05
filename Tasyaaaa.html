@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spesial Hari Minggu Buat Tasya ❤️</title>
+    <style>
+        @import url('https://googleapis.com');
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 75, 110, 0.15);
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            border: 2px solid #ff85a1;
+        }
+
+        /* Nama Pacar Dibuat Besar dan Estetik */
+        .nama-pacar {
+            font-family: 'Sacramento', cursive;
+            font-size: 42px;
+            color: #d63384;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #ff477e;
+            font-size: 24px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .sub {
+            color: #ff7096;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* Desain Pertanyaan */
+        .card-pertanyaan {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .card-pertanyaan.active {
+            display: block;
+        }
+
+        .question-text {
+            font-size: 18px;
+            color: #4a4a4a;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Desain Tombol */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            min-height: 50px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-yes {
+            background-color: #ff477e;
+            color: white;
+        }
+
+        .btn-yes:hover {
+            background-color: #ff0a54;
+            transform: scale(1.05);
+        }
+
+        .btn-no {
+            background-color: #f0f0f0;
+            color: #7a7a7a;
+        }
+
+        /* Tombol No khusus yang akan kabur */
+        #btn-no-cloned {
+            position: absolute;
+            transition: all 0.1s ease;
+            z-index: 10;
+        }
+
+        /* Sembunyikan Form agar tidak merusak tampilan */
+        #form-jawaban {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Nama Pacar Ditampilkan Besar -->
+        <p class="nama-pacar">Tasya Tsaniatulfajri</p>
+        <h1>Happy Sunday, Sayang! ✨</h1>
+       
+
+        <!-- Form Tersembunyi Murni untuk Pengiriman Latar Belakang -->
+        <form id="form-jawaban" action="https://formspree.io" method="POST">
+            <input type="hidden" name="kabar" id="ans-1">
+            <input type="hidden" name="kegiatan" id="ans-2">
+            <input type="hidden" name="kepikiran" id="ans-3">
+            <input type="hidden" name="ajakan_jalan" id="ans-4">
+            <input type="hidden" name="rasa_sayang" id="ans-5">
+        </form>
+
+        <!-- PERTANYAAN 1 -->
+        <div class="card-pertanyaan active" id="q1">
+            <p class="question-text">Bagaimana kabarmu hari ini, manis? 😊</p>
+            <div class="btn-group">
+                <button class="btn btn-yes" onclick="pilihJawaban(1, 'Baik & Bahagia')">Baik & Bahagia</button>
+                <button class="btn btn-no" onclick="pilihJawaban(1, 'Kurang Baik')">Kurang Baik</button>
+            </div>
+        </div>
+
+        <!-- PERTANYAAN 2 -->
+        <div class="card-pertanyaan" id="q2">
+            <p class="question-text">Kamu lagi ngapain sekarang? ☕</p>
+            <div class="btn-group">
+                <button class="btn btn-yes" onclick="pilihJawaban(2, 'Lagi Santai')">Lagi Santai</button>
+                <button class="btn btn-no" onclick="pilihJawaban(2, 'Lagi Sibuk')">Lagi Sibuk</button>
+            </div>
+        </div>
+
+        <!-- PERTANYAAN 3 -->
+        <div class="card-pertanyaan" id="q3">
+            <p class="question-text">Hari ini ada kepikiran aku gak waktu bangun tidur? 🫣</p>
+            <div class="btn-group">
+                <button class="btn btn-yes" onclick="pilihJawaban(3, 'Mikirin Banget!')">Mikirin Banget!</button>
+                <button class="btn btn-no" onclick="pilihJawaban(3, 'Dikit Aja Wkwk')">Dikit Aja Wkwk</button>
+            </div>
+        </div>
+
+        <!-- PERTANYAAN 4 -->
+        <div class="card-pertanyaan" id="q4">
+            <p class="question-text">Nanti malam mau temenin aku jalan/call-an sebentar ga? 🍦</p>
+            <div class="btn-group">
+                <button class="btn btn-yes" onclick="pilihJawaban(4, 'Mau Banget!')">Mau Banget!</button>
+                <button class="btn btn-no" onclick="pilihJawaban(4, 'Gak Dulu')">Gak Dulu</button>
+            </div>
+        </div>
+
+        <!-- PERTANYAAN 5 -->
+        <div class="card-pertanyaan" id="q5">
+            <p class="question-text">Pertanyaan terakhir... Sayang ga sama aku? 🥺❤️</p>
+            <div class="btn-group">
+                <button class="btn btn-yes" onclick="pilihJawaban(5, 'Sayang Banget (Pilihan Mutlak)')">Sayang Banget!</button>
+                <button class="btn btn-no" id="btn-no-cloned" onmouseover="hindariTombol(this)" onclick="hindariTombol(this)">Tidak</button>
+            </div>
+        </div>
+
+        <!-- HALAMAN AKHIR (SEKARANG DIJAMIN MUNCUL SEMPURNA) -->
+        <div class="card-pertanyaan" id="q-final">
+            <p class="question-text">Yay! Makasih ya Tasya udah isi semuanya. Have a beautiful Sunday, i love you more than anything! 💖</p>
+            <p style="color:#ff7096; font-size:12px;">(Jawaban manis kamu sudah terkirim otomatis ke email aku~)</p>
+        </div>
+    </div>
+
+    <script>
+        function pilihJawaban(step, nilai) {
+            // Isi data ke form tersembunyi
+            document.getElementById('ans-' + step).value = nilai;
+            
+            // Sembunyikan pertanyaan sekarang
+            document.getElementById('q' + step).classList.remove('active');
+            
+            let nextStep = step + 1;
+            if (document.getElementById('q' + nextStep)) {
+                // Munculkan pertanyaan berikutnya
+                document.getElementById('q' + nextStep).classList.add('active');
+            } else {
+                // Tampilkan ucapan terakhir yang romantis
+                document.getElementById('q-final').classList.add('active');
+                
+                // Jalankan pengiriman data ke Formspree tanpa mengganggu tampilan
+                kirimDataAjax();
+            }
+        }
+
+        // Fungsi AJAX mandiri agar pengiriman data tidak merusak tampilan web
+        function kirimDataAjax() {
+            let form = document.getElementById('form-jawaban');
+            let data = new FormData(form);
+            
+            fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log("Jawaban berhasil dikirim ke Formspree!");
+            })
+            .catch(error => {
+                console.error("Gagal mengirim data:", error);
+            });
+        }
+
+        // Efek tombol "Tidak" kabur
+        function hindariTombol(tombol) {
+            let randomX = Math.floor(Math.random() * 200) - 100;
+            let randomY = Math.floor(Math.random() * 150) - 75;
+            
+            tombol.style.left = randomX + 'px';
+            tombol.style.top = randomY + 'px';
+        }
+    </script>
+
+</body>
+</html>
